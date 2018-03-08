@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>LinkedIn JavaScript API</title>
+
+<script type="text/javascript" src="in.js">
+  api_key: 81uzbm42vjnfmp
+</script>
+
+<script type="text/javascript">
+
+    function onLinkedInLoad() {
+        IN.UI.Authorize().place();      
+        IN.Event.on(IN, "auth", function () { onLogin(); });
+        IN.Event.on(IN, "logout", function () { onLogout(); });
+    }
+
+    function onLogin() {
+            IN.API.Profile("me").result(displayResult);
+    }  
+    function displayResult(profiles) {
+        member = profiles.values[0];
+        alert(member.id + " Hello " +  member.firstName + " " + member.lastName);
+    }  
+</script>
+
+</head>
+<body>
+    <input type="button" onclick="onLinkedInLoad()" value="Sign in using LinkedIn account" />
+</body>
+</html>
